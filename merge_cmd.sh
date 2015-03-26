@@ -1,0 +1,13 @@
+#!/bin/bash
+diff <(bcftools merge --force-samples inputs/merge.a.vcf.gz inputs/merge.b.vcf.gz inputs/merge.c.vcf.gz | grep -v ^##bcftools_) <(cat test/merge.abc.out)
+diff <(bcftools merge -Ob --force-samples inputs/merge.a.vcf.gz inputs/merge.b.vcf.gz inputs/merge.c.vcf.gz | bcftools view | grep -v ^##bcftools_) <(cat test/merge.abc.out)
+diff <(bcftools merge --force-samples -m none inputs/merge.2.a.vcf.gz inputs/merge.2.b.vcf.gz | grep -v ^##bcftools_) <(cat test/merge.2.none.out)
+diff <(bcftools merge -Ob --force-samples -m none inputs/merge.2.a.vcf.gz inputs/merge.2.b.vcf.gz | bcftools view | grep -v ^##bcftools_) <(cat test/merge.2.none.out)
+diff <(bcftools merge --force-samples -m both inputs/merge.2.a.vcf.gz inputs/merge.2.b.vcf.gz | grep -v ^##bcftools_) <(cat test/merge.2.both.out)
+diff <(bcftools merge -Ob --force-samples -m both inputs/merge.2.a.vcf.gz inputs/merge.2.b.vcf.gz | bcftools view | grep -v ^##bcftools_) <(cat test/merge.2.both.out)
+diff <(bcftools merge --force-samples -m all inputs/merge.2.a.vcf.gz inputs/merge.2.b.vcf.gz | grep -v ^##bcftools_) <(cat test/merge.2.all.out)
+diff <(bcftools merge -Ob --force-samples -m all inputs/merge.2.a.vcf.gz inputs/merge.2.b.vcf.gz | bcftools view | grep -v ^##bcftools_) <(cat test/merge.2.all.out)
+diff <(bcftools merge --force-samples -i TR:sum,TA:sum,TG:sum inputs/merge.3.a.vcf.gz inputs/merge.3.b.vcf.gz | grep -v ^##bcftools_) <(cat test/merge.3.out)
+diff <(bcftools merge -Ob --force-samples -i TR:sum,TA:sum,TG:sum inputs/merge.3.a.vcf.gz inputs/merge.3.b.vcf.gz | bcftools view | grep -v ^##bcftools_) <(cat test/merge.3.out)
+diff <(bcftools merge --force-samples -m id inputs/merge.4.a.vcf.gz inputs/merge.4.b.vcf.gz | grep -v ^##bcftools_) <(cat test/merge.4.out)
+diff <(bcftools merge -Ob --force-samples -m id inputs/merge.4.a.vcf.gz inputs/merge.4.b.vcf.gz | bcftools view | grep -v ^##bcftools_) <(cat test/merge.4.out)

@@ -1,0 +1,13 @@
+#!/bin/bash
+diff <(bcftools index -s inputs/idx.vcf.gz) <(cat test/idx.out)
+diff <(bcftools index -s inputs/idx.vcf.gz) <(cat test/idx.out)
+diff <(bcftools index -s inputs/idx.bcf) <(cat test/idx.out)
+diff <(bcftools index -n inputs/idx.vcf.gz) <(cat test/idx_count.out)
+diff <(bcftools index -n inputs/idx.vcf.gz) <(cat test/idx_count.out)
+diff <(bcftools index -n inputs/idx.bcf) <(cat test/idx_count.out)
+diff <(bcftools index -s inputs/empty.vcf.gz) <(cat test/empty.idx.out)
+diff <(bcftools index -s inputs/empty.vcf.gz) <(cat test/empty.idx.out)
+diff <(bcftools index -s inputs/empty.bcf) <(cat test/empty.idx.out)
+diff <(bcftools index -n inputs/empty.vcf.gz) <(cat test/empty.idx_count.out)
+diff <(bcftools index -n inputs/empty.vcf.gz) <(cat test/empty.idx_count.out)
+diff <(bcftools index -n inputs/empty.bcf) <(cat test/empty.idx_count.out)

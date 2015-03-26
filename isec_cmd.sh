@@ -1,0 +1,13 @@
+#!/bin/bash
+diff <(bcftools isec -n =2 inputs/isec.a.vcf.gz inputs/isec.b.vcf.gz) <(cat test/isec.ab.out)
+diff <(bcftools isec -Ob -n =2 inputs/isec.a.vcf.gz inputs/isec.b.vcf.gz) <(cat test/isec.ab.out)
+diff <(bcftools isec -n =2 -i"STRLEN(REF)==2" inputs/isec.a.vcf.gz inputs/isec.b.vcf.gz) <(cat test/isec.ab.flt.out)
+diff <(bcftools isec -Ob -n =2 -i"STRLEN(REF)==2" inputs/isec.a.vcf.gz inputs/isec.b.vcf.gz) <(cat test/isec.ab.flt.out)
+diff <(bcftools isec -n =2 -c both inputs/isec.a.vcf.gz inputs/isec.b.vcf.gz) <(cat test/isec.ab.both.out)
+diff <(bcftools isec -Ob -n =2 -c both inputs/isec.a.vcf.gz inputs/isec.b.vcf.gz) <(cat test/isec.ab.both.out)
+diff <(bcftools isec -n =2 -c any inputs/isec.a.vcf.gz inputs/isec.b.vcf.gz) <(cat test/isec.ab.any.out)
+diff <(bcftools isec -Ob -n =2 -c any inputs/isec.a.vcf.gz inputs/isec.b.vcf.gz) <(cat test/isec.ab.any.out)
+diff <(bcftools isec -C -c any inputs/isec.a.vcf.gz inputs/isec.b.vcf.gz) <(cat test/isec.ab.C.out)
+diff <(bcftools isec -Ob -C -c any inputs/isec.a.vcf.gz inputs/isec.b.vcf.gz) <(cat test/isec.ab.C.out)
+diff <(bcftools isec  -T inputs/isec.tab.gz inputs/isec.a.vcf.gz 2>/dev/null | grep -v ^##bcftools_) <(cat test/isec.tab.out)
+diff <(bcftools isec -Ob  -T inputs/isec.tab.gz inputs/isec.a.vcf.gz 2>/dev/null | bcftools view | grep -v ^##bcftools_) <(cat test/isec.tab.out)
